@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cbqm8ljq2xg7k"]
+
+[ext_resource type="Texture2D" uid="uid://d0tcgbmvmug05" path="res://imports/floor/ceramic_2_basecolor-4K.png" id="1_t7k3y"]
+[ext_resource type="Texture2D" uid="uid://bbtidfvlbk1sr" path="res://imports/floor/ceramic_2_ambientocclusion-4K.png" id="2_um3ui"]
+[ext_resource type="Texture2D" uid="uid://blhwf4s1ckb63" path="res://imports/floor/ceramic_2_metallic-4K.png" id="2_w1cbj"]
+[ext_resource type="Texture2D" uid="uid://bn7av53le4ten" path="res://imports/floor/ceramic_2_normal-4K.png" id="3_6ddis"]
+[ext_resource type="Texture2D" uid="uid://dj6y76kbrw6gg" path="res://imports/floor/ceramic_2_roughness-4K.png" id="4_rn5mx"]
+
+[resource]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_t7k3y")
+metallic = 1.0
+metallic_specular = 0.9
+metallic_texture = ExtResource("2_w1cbj")
+roughness_texture = ExtResource("4_rn5mx")
+normal_enabled = true
+normal_texture = ExtResource("3_6ddis")
+ao_enabled = true
+ao_texture = ExtResource("2_um3ui")
+uv1_scale = Vector3(0.02, 0.02, 0.02)
+uv1_triplanar = true

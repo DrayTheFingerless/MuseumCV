@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://klvnywo5vwrf"]
+
+[ext_resource type="Texture2D" uid="uid://dj6y76kbrw6gg" path="res://imports/floor/ceramic_2_roughness-4K.png" id="1_3nvel"]
+
+[resource]
+render_priority = 1
+albedo_color = Color(0.752719, 0.418, 0.287157, 1)
+roughness_texture = ExtResource("1_3nvel")

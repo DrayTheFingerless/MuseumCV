@@ -1,0 +1,236 @@
+[gd_scene load_steps=18 format=3 uid="uid://c2cr6ebcc8s6g"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_puatq"]
+[ext_resource type="Material" uid="uid://c7jp3n38i25ms" path="res://imports/wall_textures/bottomWallMaterial.tres" id="2_b3ixh"]
+[ext_resource type="PackedScene" uid="uid://b23jpkjufst2f" path="res://imports/basic_char.glb" id="2_keir4"]
+[ext_resource type="Material" uid="uid://trh55kw2ic27" path="res://imports/wall_textures/topWallMaterial.tres" id="3_pegut"]
+[ext_resource type="Texture2D" uid="uid://bn7av53le4ten" path="res://imports/floor/ceramic_2_normal-4K.png" id="4_4y38e"]
+[ext_resource type="Material" uid="uid://cbqm8ljq2xg7k" path="res://imports/floor/floorMaterial.tres" id="4_mq4me"]
+[ext_resource type="Texture2D" uid="uid://dj6y76kbrw6gg" path="res://imports/floor/ceramic_2_roughness-4K.png" id="5_1hoko"]
+[ext_resource type="PackedScene" uid="uid://cc0b5cqp270ph" path="res://painting.tscn" id="7_einhl"]
+[ext_resource type="PackedScene" uid="uid://b7ixx2gpsvgx8" path="res://interface.tscn" id="9_fwtqy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ocnd"]
+radius = 1.35608
+height = 11.5275
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ky5bf"]
+size = Vector3(59.8439, 2.23999, 232.752)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dpesp"]
+material = ExtResource("2_b3ixh")
+size = Vector2(12, 232)
+
+[sub_resource type="QuadMesh" id="QuadMesh_oais1"]
+material = ExtResource("3_pegut")
+size = Vector2(50, 232)
+
+[sub_resource type="QuadMesh" id="QuadMesh_olf15"]
+material = ExtResource("4_mq4me")
+size = Vector2(60, 232)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0sui"]
+albedo_color = Color(0.758482, 0.0944313, 0.180302, 1)
+metallic_specular = 0.18
+roughness = 0.87
+roughness_texture = ExtResource("5_1hoko")
+normal_scale = 0.2
+normal_texture = ExtResource("4_4y38e")
+uv1_scale = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hmicf"]
+material = SubResource("StandardMaterial3D_l0sui")
+size = Vector2(30, 220)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d8lui"]
+size = Vector3(60, 2, 60)
+
+[node name="Main" type="Node" groups=["gallery"]]
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera3D") groups=["gallery"]]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, 0, 0)
+collision_layer = 3
+script = ExtResource("1_puatq")
+camera3D = NodePath("../Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.72172, 0)
+shape = SubResource("CapsuleShape3D_3ocnd")
+
+[node name="Pivot" type="Node3D" parent="Player"]
+
+[node name="Character" parent="Player/Pivot" instance=ExtResource("2_keir4")]
+
+[node name="CameraPivot" type="SpringArm3D" parent="Player"]
+transform = Transform3D(-1, 2.99003e-08, -8.21505e-08, 0, 0.939693, 0.34202, 8.74228e-08, 0.34202, -0.939693, -4.35596, 15.58, -12.353)
+spring_length = -10.0
+
+[node name="Room" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 176.438)
+
+[node name="Wall1" type="StaticBody3D" parent="Room"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -29.6233, -1.95907, -83.4443)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.37, 0.024, 0)
+shape = SubResource("BoxShape3D_ky5bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Wall1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.286, -0.001, 0)
+mesh = SubResource("QuadMesh_dpesp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/Wall1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -38.06, 0, 0)
+mesh = SubResource("QuadMesh_oais1")
+
+[node name="Wall3" type="StaticBody3D" parent="Room"]
+transform = Transform3D(1.88048e-15, -4.30204e-08, -0.260432, -0.984191, -4.30204e-08, 0, -4.30204e-08, 0.984191, -1.13838e-08, -0.0397797, -1.82149, -198.209)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.37, 0.024, 0)
+shape = SubResource("BoxShape3D_ky5bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Wall3"]
+transform = Transform3D(1, 1.05879e-22, -3.55271e-15, -3.55271e-15, -4.37114e-08, 1, -1.27055e-21, -1, -4.37114e-08, -7.286, -0.00100136, 0)
+mesh = SubResource("QuadMesh_dpesp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/Wall3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -38.06, 0, 0)
+mesh = SubResource("QuadMesh_oais1")
+
+[node name="Wall4" type="StaticBody3D" parent="Room"]
+transform = Transform3D(1.88048e-15, -4.30204e-08, 0.260432, -0.984191, -4.30204e-08, 0, 4.30204e-08, -0.984191, -1.13838e-08, -0.0397797, -1.82149, 32.2951)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.37, 0.024, 0)
+shape = SubResource("BoxShape3D_ky5bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Wall4"]
+transform = Transform3D(1, 4.23516e-22, -3.55271e-15, -2.4869e-14, -4.37114e-08, 1, 1.69407e-21, -1, -4.37114e-08, -7.286, -0.00100708, 0)
+mesh = SubResource("QuadMesh_dpesp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/Wall4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -38.06, 0, 0)
+mesh = SubResource("QuadMesh_oais1")
+
+[node name="Wall2" type="StaticBody3D" parent="Room"]
+transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 30.0109, -1.95907, -83.4443)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.37, 0.024, 0)
+shape = SubResource("BoxShape3D_ky5bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Wall2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.286, -0.001, 0)
+mesh = SubResource("QuadMesh_dpesp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/Wall2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -38.06, 0, 0)
+mesh = SubResource("QuadMesh_oais1")
+
+[node name="Ground" type="StaticBody3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.192, 0, -53.112)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2108, 0.570038, -30.7702)
+shape = SubResource("BoxShape3D_ky5bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Ground"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -30.7548)
+mesh = SubResource("QuadMesh_olf15")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Room/Ground"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.123437, 0.186409, -30.7716)
+mesh = SubResource("QuadMesh_hmicf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.92609, 0, 57.3475, -30.3414)
+visible = false
+mesh = SubResource("BoxMesh_d8lui")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -0.00919775, 0.999958, 0, -0.999958, -0.00919775, 0, 62.9044, -183.002)
+light_color = Color(0.917826, 0.905951, 0.845593, 1)
+light_energy = 20.0
+light_indirect_energy = 5.876
+light_volumetric_fog_energy = 0.0
+light_specular = 3.243
+spot_range = 113.108
+spot_attenuation = 0.812252
+spot_angle = 62.14
+spot_angle_attenuation = 4.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -0.00919775, 0.999958, 0, -0.999958, -0.00919775, 0, 62.9044, -141.708)
+light_color = Color(0.917826, 0.905951, 0.845593, 1)
+light_energy = 20.0
+light_indirect_energy = 5.876
+light_volumetric_fog_energy = 0.0
+light_specular = 3.243
+spot_range = 113.108
+spot_attenuation = 0.812252
+spot_angle = 62.14
+spot_angle_attenuation = 4.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -0.00919775, 0.999958, 0, -0.999958, -0.00919775, 0, 62.9044, -97.5895)
+light_color = Color(0.917826, 0.905951, 0.845593, 1)
+light_energy = 20.0
+light_indirect_energy = 5.876
+light_volumetric_fog_energy = 0.0
+light_specular = 3.243
+spot_range = 113.108
+spot_attenuation = 0.812252
+spot_angle = 62.14
+spot_angle_attenuation = 4.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -0.00919775, 0.999958, 0, -0.999958, -0.00919775, 0, 62.9044, -56.295)
+light_color = Color(0.917826, 0.905951, 0.845593, 1)
+light_energy = 20.0
+light_indirect_energy = 5.876
+light_volumetric_fog_energy = 0.0
+light_specular = 3.243
+spot_range = 113.108
+spot_attenuation = 0.812252
+spot_angle = 62.14
+spot_angle_attenuation = 4.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -0.00919775, 0.999958, 0, -0.999958, -0.00919775, 0.0103722, 62.9044, -16.543)
+light_color = Color(0.917826, 0.905951, 0.845593, 1)
+light_energy = 20.0
+light_indirect_energy = 5.876
+light_volumetric_fog_energy = 0.0
+light_specular = 3.243
+spot_range = 113.108
+spot_attenuation = 0.812252
+spot_angle = 62.14
+spot_angle_attenuation = 4.0
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -0.00919775, 0.999958, 0, -0.999958, -0.00919775, 0.0103722, 62.9044, 24.751)
+light_color = Color(0.917826, 0.905951, 0.845593, 1)
+light_energy = 20.0
+light_indirect_energy = 5.876
+light_volumetric_fog_energy = 0.0
+light_specular = 3.243
+spot_range = 113.108
+spot_attenuation = 0.812252
+spot_angle = 62.14
+spot_angle_attenuation = 4.0
+
+[node name="Painting" parent="Room" node_paths=PackedStringArray("player_camera") instance=ExtResource("7_einhl")]
+transform = Transform3D(3.83471e-05, -0.00253508, -0.999997, -0.015142, 0.999882, -0.00253537, 0.999885, 0.0151421, -4.37112e-08, 29.7735, 14, 0)
+player_camera = NodePath("../../Camera3D")
+
+[node name="Painting2" parent="Room" node_paths=PackedStringArray("player_camera") instance=ExtResource("7_einhl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 29, 14, -128)
+player_camera = NodePath("../../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 2.26266e-08, -8.44439e-08, -7.70452e-09, 0.939358, 0.342938, 8.70826e-08, 0.342938, -0.939358, -4.35596, 20.8377, -11.6537)
+
+[node name="Interface" parent="." instance=ExtResource("9_fwtqy")]
+offset_left = -3.0
+offset_right = -3.0

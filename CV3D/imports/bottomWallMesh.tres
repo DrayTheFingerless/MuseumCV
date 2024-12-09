@@ -1,0 +1,52 @@
+[gd_resource type="ArrayMesh" load_steps=6 format=3 uid="uid://daqxu0tsg2yoj"]
+
+[ext_resource type="Texture2D" uid="uid://c1kikka6gyo82" path="res://imports/wall_textures/bottomWallMesh_4K-ceramic_decorative_5-diffuse.jpg" id="1_77t80"]
+[ext_resource type="Texture2D" uid="uid://ciwej2xi0ue40" path="res://imports/wall_textures/bottomWallMesh_4K-ceramic_decorative_5-specular-4K-ceramic_decorative_5-ao.png" id="2_pckyv"]
+[ext_resource type="Texture2D" uid="uid://b182o5xerry8m" path="res://imports/wall_textures/bottomWallMesh_4K-ceramic_decorative_5-normal.jpg" id="3_y21oo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4kp2"]
+resource_name = "BottomWall"
+cull_mode = 2
+albedo_texture = ExtResource("1_77t80")
+metallic = 1.0
+metallic_texture = ExtResource("2_pckyv")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_pckyv")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_y21oo")
+uv1_scale = Vector3(0.04, 0.05, 0.04)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_i1dpi"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"name": "BottomWall",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(254, 255, 254, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 254, 255, 254, 255, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "bottomWallMesh_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"attribute_data": PackedByteArray(255, 159, 255, 127, 255, 159, 255, 127, 255, 159, 255, 127, 255, 95, 255, 127, 255, 95, 255, 127, 255, 95, 255, 127, 255, 159, 255, 63, 255, 159, 255, 63, 255, 159, 255, 63, 255, 95, 255, 63, 255, 95, 255, 63, 255, 95, 255, 63, 255, 159, 255, 191, 255, 223, 255, 127, 255, 159, 255, 191, 255, 95, 255, 191, 255, 31, 255, 127, 255, 95, 255, 191, 255, 159, 0, 0, 255, 223, 255, 63, 255, 159, 255, 255, 255, 95, 0, 0, 255, 31, 255, 63, 255, 95, 255, 255),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 19, 0, 13, 0, 1, 0, 7, 0, 19, 0, 9, 0, 18, 0, 6, 0, 9, 0, 21, 0, 18, 0, 23, 0, 14, 0, 20, 0, 23, 0, 17, 0, 14, 0, 16, 0, 10, 0, 4, 0, 16, 0, 22, 0, 10, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 15, 0, 0, 0, 12, 0, 15, 0, 3, 0, 0, 0),
+"material": SubResource("StandardMaterial3D_p4kp2"),
+"name": "BottomWall",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 84, 213, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 255, 191, 254, 255, 0, 0, 0, 0, 84, 213, 254, 255, 254, 255, 255, 255, 255, 191, 254, 255, 254, 255, 255, 255, 255, 255, 254, 255, 254, 255, 255, 255, 84, 213, 254, 255, 0, 0, 255, 255, 255, 191, 254, 255, 0, 0, 255, 255, 255, 191, 254, 255, 0, 0, 255, 255, 84, 213, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 254, 255, 255, 255, 255, 191, 0, 0, 254, 255, 255, 255, 255, 255, 0, 0, 254, 255, 255, 255, 84, 213, 0, 0, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 84, 213, 255, 191, 255, 191, 255, 127, 255, 191, 170, 42, 170, 42, 255, 191, 255, 191, 0, 0, 255, 127, 170, 42, 170, 42, 255, 255, 255, 255, 255, 127, 255, 191, 170, 42, 170, 42, 255, 255, 255, 255, 0, 0, 255, 127, 170, 42, 170, 42, 255, 191, 255, 191, 255, 127, 255, 191, 84, 213, 84, 213, 255, 191, 255, 191, 0, 0, 255, 127, 84, 213, 84, 213, 255, 255, 255, 255, 255, 127, 255, 191, 84, 213, 84, 213, 255, 255, 255, 255, 0, 0, 255, 127, 84, 213, 84, 213)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_i1dpi")

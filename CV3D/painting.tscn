@@ -1,0 +1,183 @@
+[gd_scene load_steps=12 format=3 uid="uid://cc0b5cqp270ph"]
+
+[ext_resource type="Script" path="res://painting.gd" id="1_nen4s"]
+[ext_resource type="Shader" path="res://hologram.gdshader" id="2_8gihh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eyt7c"]
+albedo_color = Color(0.592884, 0.345468, 0.258495, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_72kp8"]
+material = SubResource("StandardMaterial3D_eyt7c")
+
+[sub_resource type="PointMesh" id="PointMesh_wa6ps"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8u8g"]
+render_priority = 0
+shader = ExtResource("2_8gihh")
+shader_parameter/line_color = Color(0, 1, 1, 1)
+shader_parameter/line_width = 0.005
+shader_parameter/line_blur = 0.2
+shader_parameter/line_speed = 0.02
+shader_parameter/straight_lines = true
+shader_parameter/interrupt_width = 0.5
+shader_parameter/interrupt_blur = 0.25
+shader_parameter/interrupt_speed = 0.2
+shader_parameter/glow_color = Color(0.5, 1, 0.75, 1)
+shader_parameter/glow_itensity = 4.5
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 0.55
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hwf2h"]
+material = SubResource("ShaderMaterial_l8u8g")
+top_radius = 0.0
+bottom_radius = 1.5
+height = 0.929
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Animation" id="Animation_51wtt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PopUpPainting:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PopUpPainting:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PopUpPainting:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.10591, 3.86221, 0.0982852)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PopUpPainting:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.174209)]
+}
+
+[sub_resource type="Animation" id="Animation_tuxom"]
+resource_name = "zoom_out"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PopUpPainting:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PopUpPainting:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 2.61799), Vector3(0, 0, 3.92699), Vector3(0, 0, 6.28319)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PopUpPainting:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(9, 9, 9)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PopUpPainting:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.849)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jfj4"]
+_data = {
+"RESET": SubResource("Animation_51wtt"),
+"zoom_out": SubResource("Animation_tuxom")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o7mnx"]
+radius = 18.253
+
+[node name="Painting" type="Node3D" groups=["painting"]]
+script = ExtResource("1_nen4s")
+
+[node name="StaticPainting" type="MeshInstance3D" parent="."]
+transform = Transform3D(18, 0, 0, 0, 16.931, 0, 0, 0, 0.431, 0, 0, 0)
+mesh = SubResource("BoxMesh_72kp8")
+
+[node name="PopUpPainting" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.10591, 0, 0, 0, 3.86221, 0, 0, 0, 0.0982852, 0, 0, 0.174209)
+visible = false
+mesh = SubResource("PointMesh_wa6ps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PopUpPainting"]
+transform = Transform3D(0.707107, -1.28028e-08, 0.707107, -0.707107, -3.09086e-08, 0.707107, 1.28028e-08, -1, -3.09086e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_hwf2h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2jfj4")
+}
+
+[node name="CameraPin" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.98391, 0.178665, 0, -0.178665, 0.98391, 0, 4.51272, 20.5122)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="PromptTrigger" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.103149)
+shape = SubResource("SphereShape3D_o7mnx")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
